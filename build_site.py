@@ -42,11 +42,11 @@ def page(path, title, content, section='', depth=0):
     active = lambda key: ' aria-current="page"' if section == key else ''
     text = f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{title} | 雛夢のページ</title><meta name="description" content="雛夢のミニ四駆。レース情報と、懐古レギュ・アニマルドライバーのレギュレーション。">
-<link rel="icon" href="{prefix}favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{prefix}style.css"></head>
-<body><a class="skip" href="#main">本文へ移動</a><header><a class="brand" href="{prefix}index.html"><span class="brand-icon">雛</span><span>雛夢のページ<small>HINAYUME · MINI 4WD</small></span></a>
+<title>{title} | ミニ四駆ステーション・工房ひなゆめ</title><meta name="description" content="ミニ四駆ステーション・工房ひなゆめ。レース情報と、懐古レギュ・アニマルドライバーのレギュレーション。">
+<link rel="icon" href="{prefix}favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{prefix}style.css?v=2"></head>
+<body><a class="skip" href="#main">本文へ移動</a><header><a class="brand" href="{prefix}index.html"><span class="brand-icon">雛</span><span>ミニ四駆ステーション・工房ひなゆめ<small>HINAYUME · MINI 4WD</small></span></a>
 <nav aria-label="メインメニュー"><a href="{prefix}race/index.html"{active('race')}>🏁 レース</a><a href="{prefix}regulations/index.html"{active('regulations')}>レギュレーション</a></nav></header>
-<main id="main">{content}</main><footer><a href="{prefix}index.html">雛夢のページ</a><span>小さなマシンで、夢中になろう。</span></footer></body></html>'''
+<main id="main">{content}</main><footer><a href="{prefix}index.html">ミニ四駆ステーション・工房ひなゆめ</a><span>小さなマシンで、夢中になろう。</span></footer></body></html>'''
     dest = SITE / path
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(text, encoding='utf-8')
@@ -54,10 +54,10 @@ def page(path, title, content, section='', depth=0):
 def crumb(text, parent='../../'):
     return f'<div class="breadcrumb"><a href="{parent}index.html">ホーム</a><span>/</span>{text}</div>'
 
-page('index.html', 'ホーム', '''<section class="hero"><p class="eyebrow">HINAYUME MINI 4WD CLUB</p><h1>走らせよう。<br>あの頃の、<em>わくわくを。</em></h1><p class="intro">雛夢のミニ四駆ページへようこそ。<br>レースのこと、マシンづくりのルールをここから。</p><div class="track" aria-hidden="true"><i></i><i></i><i></i><b>HINAYUME<br>MINI 4WD</b></div></section>
+page('index.html', 'ホーム', '''<h1 class="visually-hidden">ミニ四駆ステーション・工房ひなゆめ</h1>
 <section class="entry-grid"><a class="entry" href="race/index.html"><span class="eyebrow">01 / RACE</span><h2>🏁 レース <span>↗</span></h2><p>開催情報・レースのお知らせ</p><small>準備中</small></a><a class="entry" href="regulations/index.html"><span class="eyebrow">02 / REGULATIONS</span><h2>レギュレーション <span>↗</span></h2><p>懐古レギュ / アニマルドライバー</p><small class="live">懐古レギュの使用可能パーツを公開</small></a></section>''')
 page('race/index.html', 'レース', crumb('🏁 レース','../') + '<p class="eyebrow">RACE</p><h1>🏁 レース</h1><section class="empty"><span class="status">準備中</span><h2>次のスタートを、お楽しみに。</h2><p>レースの開催情報は、こちらに掲載予定です。</p></section>', 'race',1)
-page('regulations/index.html', 'レギュレーション', crumb('レギュレーション','../') + '''<p class="eyebrow">REGULATIONS</p><h1>レギュレーション</h1><p class="intro">参加するレギュレーションを選んで、マシンづくりの参考に。</p><section class="entry-grid"><a class="entry" href="kaiko/index.html"><span class="eyebrow">NOSTALGIC CLASS</span><h2>懐古レギュ <span>↗</span></h2><p>使用可能パーツ一覧</p><small class="live">29点のパーツを掲載</small></a><a class="entry" href="animal/index.html"><span class="eyebrow">ANIMAL DRIVER</span><h2>アニマルドライバー <span>↗</span></h2><p>レギュレーションのご案内</p><small>準備中</small></a></section>''','regulations',1)
+page('regulations/index.html', 'レギュレーション', '''<h1 class="visually-hidden">レギュレーション</h1><section class="entry-grid"><a class="entry" href="kaiko/index.html"><span class="eyebrow">NOSTALGIC CLASS</span><h2>懐古レギュ <span>↗</span></h2><p>使用可能パーツ一覧</p><small class="live">29点のパーツを掲載</small></a><a class="entry" href="animal/index.html"><span class="eyebrow">ANIMAL DRIVER</span><h2>アニマルドライバー <span>↗</span></h2><p>レギュレーションのご案内</p><small>準備中</small></a></section>''','regulations',1)
 page('regulations/animal/index.html', 'アニマルドライバー', crumb('<a href="../index.html">レギュレーション</a><span>/</span>アニマルドライバー') + '<p class="eyebrow">ANIMAL DRIVER</p><h1>アニマルドライバー</h1><section class="empty"><span class="status">準備中</span><h2>ルールは、こちらでお知らせします。</h2><p>詳細なレギュレーションは掲載準備中です。</p></section>','regulations',2)
 cards = ''
 for i,(file,name,number,category) in enumerate(PARTS,1):
