@@ -1,146 +1,175 @@
 [
   {
     "image": "assets/parts/p01_r02_c01.png",
+    "number": "15111",
     "name": "丸穴ボールベアリング 4個セット",
     "category": "ベアリング・ローラー"
   },
   {
     "image": "assets/parts/p01_r02_c06.png",
+    "number": "15205",
     "name": "1.4mm中空軽量プロペラシャフト",
     "category": "シャフト"
   },
   {
     "image": "assets/parts/p01_r03_c01.png",
+    "number": "15206",
     "name": "2.0mm中空軽量プロペラシャフト",
     "category": "シャフト"
   },
   {
     "image": "assets/parts/p01_r03_c02.png",
+    "number": "15234",
     "name": "スーパーXシャーシ 中空軽量プロペラシャフト",
     "category": "シャフト"
   },
   {
     "image": "assets/parts/p01_r03_c04.png",
+    "number": "15344",
     "name": "ローラー用9mm ボールベアリングセット",
     "category": "ベアリング・ローラー"
   },
   {
     "image": "assets/parts/p01_r03_c05.png",
+    "number": "15345",
     "name": "ローラー用11mm ボールベアリングセット",
     "category": "ベアリング・ローラー"
   },
   {
     "image": "assets/parts/p01_r04_c02.png",
+    "number": "15161",
     "name": "17mm アルミベアリングローラー",
     "category": "ベアリング・ローラー"
   },
   {
     "image": "assets/parts/p01_r04_c06.png",
+    "number": "15160",
     "name": "19mm アルミベアリングローラー",
     "category": "ベアリング・ローラー"
   },
   {
     "image": "assets/parts/p01_r05_c01.png",
+    "number": "15125",
     "name": "19mmプラリング付アルミベアリングローラーセット",
     "category": "ベアリング・ローラー"
   },
   {
     "image": "assets/parts/p01_r06_c04.png",
+    "number": "15059",
     "name": "スタビライザーポールセット",
     "category": "ステー・補強パーツ"
   },
   {
     "image": "assets/parts/p02_r02_c05.png",
+    "number": "15510",
     "name": "ステンレス皿ビスセット（10・12・15・20・25・30mm）",
     "category": "ビス・スペーサー"
   },
   {
     "image": "assets/parts/p02_r02_c06.png",
+    "number": "15527",
     "name": "ステンレス皿ビスセット（6・8・15mm）",
     "category": "ビス・スペーサー"
   },
   {
     "image": "assets/parts/p02_r03_c01.png",
+    "number": "15322",
     "name": "ミニ四駆ビスセットA",
     "category": "ビス・スペーサー"
   },
   {
     "image": "assets/parts/p02_r03_c02.png",
+    "number": "15323",
     "name": "ミニ四駆ビスセットB",
     "category": "ビス・スペーサー"
   },
   {
     "image": "assets/parts/p02_r03_c03.png",
+    "number": "15407",
     "name": "ビスセットD（40mmステンレスビス）",
     "category": "ビス・スペーサー"
   },
   {
     "image": "assets/parts/p02_r03_c04.png",
+    "number": "15473",
     "name": "アルミスペーサーセット（12/6.7/6/3/1.5mm）",
     "category": "ビス・スペーサー"
   },
   {
     "image": "assets/parts/p02_r04_c06.png",
+    "number": "15243",
     "name": "スーパーXシャーシ FRPリヤーローラーステー",
     "category": "ステー・補強パーツ"
   },
   {
     "image": "assets/parts/p02_r05_c01.png",
+    "number": "15242",
     "name": "スーパーXシャーシ FRPマルチ強化プレート",
     "category": "ステー・補強パーツ"
   },
   {
     "image": "assets/parts/p02_r05_c02.png",
+    "number": "15193",
     "name": "FRPマルチ補強プレート",
     "category": "ステー・補強パーツ"
   },
   {
     "image": "assets/parts/p02_r05_c06.png",
+    "number": "15150",
     "name": "FRP強化マウントプレートセット",
     "category": "ステー・補強パーツ"
   },
   {
     "image": "assets/parts/p02_r08_c05.png",
+    "number": "15484",
     "name": "トルクチューン2モーター",
     "category": "モーター"
   },
   {
     "image": "assets/parts/p02_r08_c06.png",
+    "number": "15485",
     "name": "レブチューン2モーター",
     "category": "モーター"
   },
   {
     "image": "assets/parts/p02_r09_c01.png",
+    "number": "15486",
     "name": "アトミックチューン2モーター",
     "category": "モーター"
   },
   {
     "image": "assets/parts/p03_r01_c02.png",
+    "number": "15149",
     "name": "アルミモーターサポート",
     "category": "モーター"
   },
   {
     "image": "assets/parts/p03_r01_c03.png",
+    "number": "15219",
     "name": "小径メッキスポークホイールセット（レストンスポンジタイヤ付）",
     "category": "タイヤ・ホイール"
   },
   {
     "image": "assets/parts/p03_r01_c04.png",
+    "number": "15239",
     "name": "中空ゴム小径タイヤ（ホイール付）",
     "category": "タイヤ・ホイール"
   },
   {
     "image": "assets/parts/p03_r03_c03.png",
+    "number": "15046",
     "name": "レーサーミニ四駆 ゴールドターミナルB",
     "category": "ターミナル・ギヤ"
   },
   {
     "image": "assets/parts/p03_r03_c04.png",
+    "number": "15237",
     "name": "スーパーXシャーシ ゴールドターミナル",
     "category": "ターミナル・ギヤ"
   },
   {
     "image": "assets/parts/p03_r05_c06.png",
+    "number": "15236",
     "name": "ハイスピードカウンターギヤ",
     "category": "ターミナル・ギヤ"
   }
