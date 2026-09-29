@@ -17,6 +17,20 @@ SITE = ROOT / 'docs'
 SITE_NAME = 'ミニ四駆ステーション・工房ひなゆめ'
 DESCRIPTION = 'ミニ四駆ステーション・工房ひなゆめ。レース情報と、懐古レギュ・アニマルドライバーのレギュレーション。'
 
+# MINI4-LIN9 の公式イベント一覧から、愛知県・工房ひなゆめの開催だけを抜き出したもの。
+# 日付やURLを更新すると、同じ一覧UIで次回の予定も表示できます。
+RACE_EVENTS = [
+    ('2026-09-16', '工房ひなゆめ「ミニ四駆ビギナークラスレース&勉強会」', 'https://www.tamiya.com/japan/event/tamiya_event_26731'),
+    ('2026-09-19', 'ミニ四駆ステーション「ストッククラス」レース at 工房ひなゆめ', 'https://www.tamiya.com/japan/event/m4stsc2026_0806_049'),
+    ('2026-10-04', '【ダッシュクラス＆チューンクラス開催】ミニ四駆ステーションチャレンジ2026 5th ROUND at 工房ひなゆめ', 'https://www.tamiya.com/japan/event/m4stc2026_5th_0909_027'),
+    ('2026-10-04', '工房ひなゆめ「ミニ四駆走行＆交流会vol.83」', 'https://www.tamiya.com/japan/event/tamiya_event_26724'),
+    ('2026-10-24', '工房ひなゆめ「ミニ四駆ビギナークラスレース&勉強会」', 'https://www.tamiya.com/japan/event/tamiya_event_26732'),
+    ('2026-11-08', '工房ひなゆめ「ミニ四駆走行＆交流会vol.84」', 'https://www.tamiya.com/japan/event/tamiya_event_26725'),
+    ('2026-11-21', '工房ひなゆめ「ミニ四駆ビギナークラスレース&勉強会」', 'https://www.tamiya.com/japan/event/tamiya_event_26733'),
+    ('2026-12-06', '工房ひなゆめ「ミニ四駆走行＆交流会vol.85」', 'https://www.tamiya.com/japan/event/tamiya_event_26726'),
+    ('2026-12-19', '工房ひなゆめ「ミニ四駆ビギナークラスレース&勉強会」', 'https://www.tamiya.com/japan/event/tamiya_event_26734'),
+]
+
 
 def load_parts():
     """content/parts.tsv -> [{file, number, name, category}, ...]"""
@@ -148,12 +162,32 @@ def doc_page(path, name, breadcrumb, section, depth, slots=None, extra=''):
     page(path, meta['title'], content, section, depth, extra)
 
 
+def race_page():
+    events = json.dumps([
+        {'date': date, 'shop': '工房ひなゆめ', 'name': name, 'url': url}
+        for date, name, url in RACE_EVENTS
+    ], ensure_ascii=False)
+    content = crumb('🏁 レース', '../') + f'''<div class="race-heading"><div><p class="eyebrow">RACE CALENDAR</p><h1>🏁 レース開催情報</h1><p class="intro">愛知県「工房ひなゆめ」で開催されるミニ四駆イベント。</p></div><div class="roundel">{len(RACE_EVENTS)}<small>EVENTS</small></div></div>
+<section class="race-panel" aria-labelledby="race-list-heading"><div class="race-toolbar"><div><h2 id="race-list-heading">工房ひなゆめの予定</h2><p class="note">タミヤ公式イベント情報をもとに掲載しています。詳細・受付状況は各イベントページでご確認ください。</p></div><span id="race-count" class="race-count"></span></div><div id="race-months" class="race-months" role="group" aria-label="月で絞り込む"></div><label class="race-search"><span class="visually-hidden">イベント名で検索</span><input id="race-q" type="search" placeholder="イベント名で検索" autocomplete="off"></label><div id="race-list" class="race-list"></div><p id="race-empty" class="parts-empty" hidden>該当するイベントがありません。</p></section>'''
+    script = f'''<script>
+(function(){{
+  var events={events}, list=document.getElementById('race-list'), months=document.getElementById('race-months'), q=document.getElementById('race-q'), count=document.getElementById('race-count'), empty=document.getElementById('race-empty'), active='all';
+  var labels={{'09':'9月','10':'10月','11':'11月','12':'12月'}};
+  function dateText(value){{var p=value.split('-'), d=new Date(value+'T00:00:00'); return p[1]+'月'+p[2]+'日（'+['日','月','火','水','木','金','土'][d.getDay()]+'）';}}
+  function renderMonths(){{var keys=[]; events.forEach(function(e){{var m=e.date.slice(5,7); if(keys.indexOf(m)<0)keys.push(m);}}); months.innerHTML='<button class="race-chip on" data-month="all">すべて</button>'+keys.map(function(m){{return '<button class="race-chip" data-month="'+m+'">'+labels[m]+'</button>';}}).join(''); [].forEach.call(months.children,function(b){{b.addEventListener('click',function(){{active=b.dataset.month; [].forEach.call(months.children,function(x){{x.classList.toggle('on',x===b);}}); render();}});}});}}
+  function render(){{var term=q.value.trim().toLowerCase(), hit=events.filter(function(e){{return (active==='all'||e.date.slice(5,7)===active)&&(!term||e.name.toLowerCase().indexOf(term)>-1);}}); list.innerHTML=hit.map(function(e){{return '<article class="race-card"><div class="race-date">'+dateText(e.date)+'</div><div class="race-info"><span class="race-shop">'+e.shop+'</span><h3>'+e.name+'</h3></div><a class="race-detail" href="'+e.url+'" target="_blank" rel="noopener">公式詳細 ↗</a></article>';}}).join(''); count.textContent=hit.length+'件'; empty.hidden=hit.length>0;}}
+  q.addEventListener('input',render); renderMonths(); render();
+}})();
+</script>'''
+    page('race/index.html', '🏁 レース', content, 'race', 1, script)
+
+
 parts = load_parts()
 
 page('index.html', 'ホーム', f'''<h1 class="visually-hidden">{SITE_NAME}</h1>
 <section class="entry-grid"><a class="entry" href="race/index.html"><span class="eyebrow">01 / RACE</span><h2>🏁 レース <span>↗</span></h2><p>開催情報・レースのお知らせ</p><small>準備中</small></a><a class="entry" href="regulations/index.html"><span class="eyebrow">02 / REGULATIONS</span><h2>レギュレーション <span>↗</span></h2><p>懐古レギュ / アニマルドライバー</p><small class="live">懐古レギュ 2023年度を公開中</small></a></section>''')
 
-doc_page('race/index.html', 'race', crumb('🏁 レース', '../'), 'race', 1)
+race_page()
 
 page('regulations/index.html', 'レギュレーション', f'''<h1 class="visually-hidden">レギュレーション</h1><section class="entry-grid"><a class="entry" href="kaiko/index.html"><span class="eyebrow">NOSTALGIC CLASS</span><h2>懐古レギュ <span>↗</span></h2><p>2023年度レギュレーション / 使用可能パーツ一覧</p><small class="live">{len(parts)}点のパーツを掲載</small></a><a class="entry" href="animal/index.html"><span class="eyebrow">ANIMAL DRIVER</span><h2>アニマルドライバー <span>↗</span></h2><p>レギュレーションのご案内</p><small>準備中</small></a></section>''', 'regulations', 1)
 
